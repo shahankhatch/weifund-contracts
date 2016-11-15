@@ -79,7 +79,7 @@
     "ethdeploy": "0.1.5",
     "ethdeploy-provider-http": "0.1.1",
     "ethdeploy-provider-zero-client": "0.1.9",
-    "ethereumjs-testrpc": "2.0.8",
+    "ethereumjs-testrpc": "3.0.1",
     "ethereumjs-tx": "1.1.2",
     "ethereumjs-util": "4.5.0",
     "eventsource-polyfill": "0.9.6",
