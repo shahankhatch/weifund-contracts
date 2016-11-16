@@ -5,14 +5,10 @@
   "scripts": {
     "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
     "nodejscheckversion": "node ./internals/scripts/nodejscheckversion.js",
-    "preinstall": "npm run npmcheckversion && npm run nodejscheckversion",
-    "test": "npm run test:src && npm run test:dapple && npm run test:chaithereum",
+    "test": "npm run test:src",
     "test:src": "mocha src/tests/**/*.js -R spec  --compilers js:babel-core/register",
-    "test:dapple": "cd src && node ../node_modules/dapple/cmd/main.js test",
-    "test:chaithereum": "mocha src/contracts/tests/**/*.js -R spec  --compilers js:babel-core/register",
     "prebuild": "npm run test && rimraf dist && mkdir dist",
     "build": "npm run build:browserify",
-    "build:dapple": "cd src && node ../node_modules/dapple/cmd/main.js build",
     "build:browserify": "node ./node_modules/browserify/bin/cmd.js src -o dist/weifund-contracts.js -t [ babelify --presets [ es2015 ] ]",
     "prepublish": "npm run build",
     "deploy:testnet": "npm run prepublish && node ./node_modules/ethdeploy/bin/main.js ./internals/ethdeploy/ethdeploy.testnet.config.js",
@@ -23,7 +19,8 @@
     "lint:js": "npm run lint:eslint -- . ",
     "lint:solidity": "node ./node_modules/solium/bin/solium.js --dir ./src/contracts",
     "lint:staged": "lint-staged",
-    "coveralls": "cat ./coverage/lcov/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov/lcov.info | coveralls",
+    "wafr": "node ./node_modules/wafr/bin/wafr.js ./src/contracts"
   },
   "authors": [
     "Nick Dodson <nick.dodson@consensys.net>"
@@ -53,7 +50,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "dapple": "^0.8.26",
     "web3": "0.17.0-beta"
   },
   "devDependencies": {
@@ -69,7 +65,6 @@
     "chaithereum": "1.4.0",
     "coveralls": "2.11.9",
     "cross-env": "1.0.7",
-    "dapple": "0.8.26",
     "eslint": "2.10.1",
     "eslint-config-airbnb": "9.0.1",
     "eslint-import-resolver-webpack": "0.2.4",
@@ -94,7 +89,8 @@
     "replace-in-file": "2.0.1",
     "rimraf": "2.5.2",
     "sinon": "2.0.0-pre",
-    "solium": "0.1.16"
+    "solium": "0.1.16",
+    "wafr": "https://github.com/SilentCicero/wafr"
   },
   "babel": {
     "presets": [

@@ -1,7 +1,14 @@
 pragma solidity ^0.4.3;
 
+contract CampaignEvents {
+  // Campaign events
+  event ContributionMade (address _contributor);
+  event RefundPayoutClaimed(address _payoutDestination, uint256 _payoutAmount);
+  event BeneficiaryPayoutClaimed (address _payoutDestination, uint256 _payoutAmount);
+}
 
-contract Campaign {
+
+contract Campaign is CampaignEvents {
   /// @notice the owner or campaign operator of the campaign
   /// @return the Ethereum standard account address of the owner specified
   function owner() constant public returns(address) {}
@@ -42,8 +49,4 @@ contract Campaign {
   /// @return the campaign funding goal specified in wei as a uint256
   function amountRaised() constant public returns(uint256 amount) {}
 
-  // Campaign events
-  event ContributionMade (address _contributor);
-  event RefundPayoutClaimed(address _payoutDestination, uint256 _payoutAmount);
-  event BeneficiaryPayoutClaimed (address _payoutDestination, uint256 _payoutAmount);
 }
